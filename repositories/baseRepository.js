@@ -21,6 +21,7 @@ class BaseRepository {
     }
 
     create(data) {
+        
         data.id = this.generateId();
         data.createdAt = new Date();
         const list = this.dbContext.push(data).write();

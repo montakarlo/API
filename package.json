@@ -7,6 +7,7 @@
     "test": "sh -c 'env REPO_URL=$0 npx mocha tests/**/*.spec.js -R JSON --exit'",
     "test-local": "./node_modules/.bin/mocha tests/**/*.spec.js --exit -R JSON",
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "build-front": "cd client | ls",
     "feedback": "node ./feedback/index.js",
     "generate": "npm run test-local | npm run feedback"
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/DmitrijDN/nodejs-2020-private#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
