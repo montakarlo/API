@@ -19,7 +19,9 @@ router.get("/:id", (req, res) =>{
 })
 
 router.get("/", (req, res) =>{
+  exports.userToInsert = { "firstName": "Elon", "lastName": "Mask", "email": "elonmask@gmail.com", "phoneNumber": "+380501234567", "password": "D123fdgsfgsg435tg" }
   res.send(UserService.allUsers());
+
 })
 
 router.post("/", createUserValid, responseMiddleware, (req,res) => {
