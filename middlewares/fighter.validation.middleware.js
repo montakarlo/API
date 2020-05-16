@@ -36,7 +36,7 @@ let checkForSameKeyValue = (ObjToCheck, key, base) =>{
 let checkForSameId = (key, value, base) =>{
     let answer = false;
     base.forEach(element => {
-        element[key] == value && !answer ? answer = true : false;
+        String(element[key]) == String(value) && !answer ? answer = true : false;
     });
     return answer
 }
@@ -95,10 +95,10 @@ const updateFighterValid = (req, res, next) => {
         req.body = [404, 'Request with empty data'];
         next();        
     } else if (inputObjKeys.includes('id')){
-        req.body = [404, 'Request does not have to exist an id field'];
+        req.body = [400, 'Request does not have to exist an id field'];
         next();
     } else if (!ValidateFields(inputObjKeys, fighterKeys)){
-        req.body = [404, 'Missing some fields'];
+        req.body = [400, 'Missing some fields'];
         next();
     } else if (+inputObj['power'] >= 100 || +inputObj['power'] < 0 || typeof inputObj['power'] != 'number'){
         req.body = [400, 'Power value must be a number from range (0, 100)'];

@@ -8,6 +8,7 @@ const router = Router();
 
 router.get("/:id", (req, res) =>{
   let id = req.params["id"];
+  console.log("id", id)
   if (UserService.search({'id': id})){
     res.send(UserService.search({'id': id}));
   } else {
@@ -19,19 +20,25 @@ router.get("/:id", (req, res) =>{
 })
 
 router.get("/", (req, res) =>{
-  exports.userToInsert = { "firstName": "Elon", "lastName": "Mask", "email": "elonmask@gmail.com", "phoneNumber": "+380501234567", "password": "D123fdgsfgsg435tg" }
   res.send(UserService.allUsers());
-
 })
 
 router.post("/", createUserValid, responseMiddleware, (req,res) => {
   console.log('Pushed');
   UserService.addUser(req.body);
+
+  let obj = req.body
+  res.status(200);
+  res.json(obj);
 });
 
 router.put("/:id", updateUserValid, responseMiddleware, (req,res) => {
   console.log('Successfully updated');
   UserService.updateUser(req.params["id"], req.body);
+
+  let obj = req.body
+  res.status(200);
+  res.json(obj);
 });
 
 router.delete("/:id", deleteUserById, responseMiddleware, (req,res) => {
@@ -39,6 +46,10 @@ router.delete("/:id", deleteUserById, responseMiddleware, (req,res) => {
   console.log(req.params["id"]);
 
   UserService.deleteUser(req.params["id"]);
+
+  let obj = req.body
+  res.status(200);
+  res.json(obj);
 });
 
 // TODO: Implement route controllers for user

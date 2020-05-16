@@ -37,7 +37,7 @@ let checkForSameKeyValue = (ObjToCheck, key, base) =>{
 let checkForSameId = (key, value, base) =>{
     let answer = false;
     base.forEach(element => {
-        element[key] == value && !answer ? answer = true : false;
+        String(element[key]) == String(value) && !answer ? answer = true : false;
     });
     return answer
 }
@@ -63,10 +63,10 @@ const createUserValid = (req, res, next) => {
         req.body = [404, 'Request with empty data'];
         next();        
     } else if (inputObjKeys.includes('id')){
-        req.body = [404, 'Request does not have to exist an id field'];
+        req.body = [400, 'Request does not have to exist an id field'];
         next();
     } else if (!ValidateFields(inputObjKeys, userKeys)){
-        req.body = [404, 'Missing some fields'];
+        req.body = [400, 'Missing some fields'];
         next();
     } else if (email.slice(-10) != '@gmail.com'){
         req.body = [400, 'Incorrect email'];
@@ -105,10 +105,10 @@ const updateUserValid = (req, res, next) => {
         req.body = [404, 'Request with empty data'];
         next();        
     } else if (inputObjKeys.includes('id')){
-        req.body = [404, 'Request does not have to exist an id field'];
+        req.body = [400, 'Request does not have to exist an id field'];
         next();
     } else if (!ValidateFields(inputObjKeys, userKeys)){
-        req.body = [404, 'Missing some fields'];
+        req.body = [400, 'Missing some fields'];
         next();
     } else if (email.slice(-10) != '@gmail.com'){
         req.body = [400, 'Incorrect email'];
