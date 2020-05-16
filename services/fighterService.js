@@ -12,7 +12,7 @@ class FighterService {
     }
 
     addFighter(fighter){
-        let id = FighterRepository.generateId
+        let id = FighterRepository.generateId();
         fighter['id'] = id
         FighterRepository.create(fighter);
     }

@@ -8,6 +8,7 @@ const router = Router();
 router.get("/:id", (req, res) =>{
   let id = req.params["id"];
   if (FighterService.search({'id': id})){
+    res.status(200);
     res.send(FighterService.search({'id': id}));
   } else {
     res.status(404);
@@ -18,6 +19,7 @@ router.get("/:id", (req, res) =>{
 })
 
 router.get("/", (req, res) =>{
+  res.status(200);
   res.send(FighterService.allFighters());
 })
 

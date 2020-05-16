@@ -1,7 +1,6 @@
 const { user } = require('../models/user');
 const UserService = require('../services/userService');
 
-
 let ValidateFields = (ArrToValidate, model) => {
     let exist = true
     model.forEach(element => {
@@ -58,10 +57,9 @@ const createUserValid = (req, res, next) => {
     let email = inputObj.email;
     let phoneNumber = inputObj.phoneNumber;
     let base = UserService.allUsers();
-
     if (!Object.keys(inputObj).length){
-        req.body = [404, 'Request with empty data'];
-        next();        
+        req.body = [400, 'Request with empty data'];
+        next();
     } else if (inputObjKeys.includes('id')){
         req.body = [400, 'Request does not have to exist an id field'];
         next();
@@ -102,7 +100,7 @@ const updateUserValid = (req, res, next) => {
     let base = UserService.allUsers();
 
     if (!Object.keys(inputObj).length){
-        req.body = [404, 'Request with empty data'];
+        req.body = [400, 'Request with empty data'];
         next();        
     } else if (inputObjKeys.includes('id')){
         req.body = [400, 'Request does not have to exist an id field'];

@@ -12,8 +12,8 @@ class UserService {
     }
 
     addUser(user){
-        let id = UserRepository.generateId
-        user['id'] = id
+        let id = UserRepository.generateId();
+        user['id'] = id;
         UserRepository.create(user);
     }
 

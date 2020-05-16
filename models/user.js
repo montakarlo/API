@@ -4,5 +4,5 @@ exports.user = {
     lastName: '',
     email: '',
     phoneNumber: '',
-    password: '' // min 3 symbols
+    password: ''
 }

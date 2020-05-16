@@ -57,28 +57,36 @@ const createFighterValid = (req, res, next) => {
     let inputObjKeys = Object.keys(inputObj);
     let base = FighterService.allFighters();
     if (!Object.keys(inputObj).length){
-        req.body = [404, 'Request with empty data'];
-        next();        
+        req.body = [400, 'Request with empty data'];
+        console.log('error')
+        next();
     } else if (inputObjKeys.includes('id')){
-        req.body = [404, 'Request does not have to exist an id field'];
+        req.body = [400, 'Request does not have to exist an id field'];
+        console.log('error')
         next();
     } else if (!ValidateFields(inputObjKeys, fighterKeys)){
-        req.body = [404, 'Missing some fields'];
+        req.body = [400, 'Missing some fields'];
+        console.log('error')
         next();
     } else if (checkForSameKeyValue(inputObj, 'name', base)){
         req.body = [400, 'Fighter with the same name already exist'];
+        console.log('error')
         next();
     } else if (+inputObj['power'] >= 100 || +inputObj['power'] < 0 || typeof inputObj['power'] != 'number'){
         req.body = [400, 'Power value must be a number from range (0, 100)'];
+        console.log('error')
         next();
     } else if (+inputObj['defense'] < 1 || +inputObj['defense'] > 10 || typeof inputObj['defense'] != 'number'){
         req.body = [400, 'Defense value must be a number from range (1, 10)'];
+        console.log('error')
         next();
     } else if (typeof inputObj['health'] != 'number'){
         req.body = [400, 'Health value must be a number'];
+        console.log('error')
         next();
     } else {
         req.body = deleteExternalFields(inputObj, fighter)
+        console.log('go to respMid')
         next();
     }
 }
@@ -92,8 +100,8 @@ const updateFighterValid = (req, res, next) => {
     let inputObjKeys = Object.keys(inputObj);
     let base = FighterService.allFighters();
     if (!Object.keys(inputObj).length){
-        req.body = [404, 'Request with empty data'];
-        next();        
+        req.body = [400, 'Request with empty data'];
+        next();
     } else if (inputObjKeys.includes('id')){
         req.body = [400, 'Request does not have to exist an id field'];
         next();
@@ -116,7 +124,6 @@ const updateFighterValid = (req, res, next) => {
         req.body = deleteExternalFields(inputObj, fighter)
         next();
     }
-    next();
 }
 
 const deleteFighterById = (req, res, next) => {
