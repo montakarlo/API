@@ -114,6 +114,12 @@ const updateUserValid = (req, res, next) => {
     } else if (phoneNumber.slice(0,4) != '+380' || phoneNumber.length != 13){
         req.body = [400, 'Incorrect phone'];
         next();
+    } else if (checkForSameKeyValue(inputObj, 'email', base)){
+        req.body = [400, 'User with the same email already exist'];
+        next();
+    }else if (checkForSameKeyValue(inputObj, 'phoneNumber', base)){
+        req.body = [400, 'User with the same phone number already exist'];
+        next();
     }else if (inputObj['password'].length<3){
         req.body = [400, 'Incorrect password. Enter more than 3 symbols'];
         next();

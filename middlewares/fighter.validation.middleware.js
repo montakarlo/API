@@ -117,6 +117,10 @@ const updateFighterValid = (req, res, next) => {
     } else if (typeof inputObj['health'] != 'number'){
         req.body = [400, 'Health value must be a number'];
         next();
+    } else if (checkForSameKeyValue(inputObj, 'name', base)){
+        req.body = [400, 'Fighter with the same name already exist'];
+        console.log('error')
+        next();
     } else if (!checkForSameId("id", id, base)){
         req.body = [404, 'Fighter with this id is not found'];
         next();

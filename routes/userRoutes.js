@@ -23,6 +23,7 @@ router.get("/:id", (req, res) =>{
 router.get("/", (req, res) =>{
   res.status(200);
   res.send(UserService.allUsers());
+
 })
 
 router.post("/", createUserValid, responseMiddleware, (req,res) => {
