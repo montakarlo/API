@@ -57,6 +57,7 @@ const createUserValid = (req, res, next) => {
     let email = inputObj.email;
     let phoneNumber = inputObj.phoneNumber;
     let base = UserService.allUsers();
+
     if (!Object.keys(inputObj).length){
         req.body = [400, 'Request with empty data'];
         next();

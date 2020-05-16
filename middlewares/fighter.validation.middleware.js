@@ -35,6 +35,7 @@ let checkForSameKeyValue = (ObjToCheck, key, base) =>{
 
 let checkForSameId = (key, value, base) =>{
     let answer = false;
+    console.log(base)
     base.forEach(element => {
         String(element[key]) == String(value) && !answer ? answer = true : false;
     });

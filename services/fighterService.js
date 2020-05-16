@@ -6,7 +6,7 @@ class FighterService {
     allFighters(){
         const items = FighterRepository.getAll();
         if(!items.length) {
-            return null;
+            return [];
         }
         return items;
     }
@@ -28,7 +28,7 @@ class FighterService {
     search(search) {
         const item = FighterRepository.getOne(search);
         if(!item) {
-            return null;
+            return [];
         }
         return item;
     }

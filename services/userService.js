@@ -6,7 +6,7 @@ class UserService {
     allUsers(){
         const items = UserRepository.getAll();
         if(!items.length) {
-            return null;
+            return [];
         }
         return items;
     }
@@ -28,7 +28,7 @@ class UserService {
     search(search) {
         const item = UserRepository.getOne(search);
         if(!item) {
-            return null;
+            return [];
         }
         return item;
     }
