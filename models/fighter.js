@@ -1,6 +1,7 @@
 exports.fighter = {
-    "id": "",
-    "name": "",
-    "health": 100,
-    "power": 0
+    id: '',
+    name: '',
+    health: '',
+    power: '',
+    defense: ''
 }
