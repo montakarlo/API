@@ -86,12 +86,10 @@ const createUserValid = (req, res, next) => {
         req.body = deleteExternalFields(inputObj, user)
         next();
     }
-    //     // TODO: Implement validatior for user entity during creation
 }
 
 const updateUserValid = (req, res, next) => {
     let id = req.params["id"];
-
     let inputObj = req.body;
     let userKeys = Object.keys(user);
     userKeys = deleteFromArr(userKeys, 'id');
@@ -99,7 +97,6 @@ const updateUserValid = (req, res, next) => {
     let email = inputObj.email;
     let phoneNumber = inputObj.phoneNumber;
     let base = UserService.allUsers();
-
     if (!Object.keys(inputObj).length){
         req.body = [400, 'Request with empty data'];
         next();        
@@ -131,7 +128,6 @@ const updateUserValid = (req, res, next) => {
         req.body = deleteExternalFields(inputObj, user)
         next();
     }
-    // TODO: Implement validatior for user entity during update
 }
 
 const deleteUserById = (req, res, next) => {

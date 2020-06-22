@@ -7,12 +7,11 @@ export default function SignOut({ isSignedIn, onSignOut}) {
         unsetLoginSession();
         onSignOut();
     }
-
     if(isSignedIn) {
         return (
             <div onClick={signOut} id="sign-out">Sign out</div>
         )
     }
-
     return null;
 }
+
